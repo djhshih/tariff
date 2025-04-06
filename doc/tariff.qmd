@@ -1,0 +1,49 @@
+---
+title: "Tariff"
+format: html
+---
+
+Recall the definition of price elasticity of import demand:
+$$
+\epsilon \triangleq \frac{ \Delta m / m }{\Delta p / p} ,
+$$
+where $m$ is the total import volume in dollar terms and
+$p$ is the price of the imports goods.
+
+The relative change in price can be re-written as
+$$
+\frac{\Delta p}{p} = \frac{p' - p}{p}
+= \frac{p'}{p} - 1 ,
+$$
+where the new price $p'$ is increased by the change in tariff rate $\Delta \tau$,
+whose effect will be blunted by the import pass-through rate $\psi$:
+$$
+p' = p \, (1 + \Delta\tau \, \psi) .
+$$
+Substituting $p'$ back into the relative change in price,
+$$
+\frac{\Delta p}{p}
+= \frac{p (1 + \Delta \tau \, \psi)}{p} - 1
+= \Delta\tau \, \psi .
+$$
+
+Substituting this into the definition of $\epsilon$,
+$$
+\epsilon
+ = \frac{\Delta m}{m \, \Delta\tau \, \psi} ,
+$$
+which can be arranged to give
+$$
+\Delta\tau = \frac{\Delta m}{\epsilon \, \psi \, m} .
+$$
+Parameters were set as follows:
+$\epsilon = -4$ and $\psi = 0.25$.
+
+Setting $\epsilon = -4$ assumes that a 1% increase in the price of imported 
+goods will reduce the import by 4%.
+
+Setting $\psi = 0.25$ assumes that an additive tariff hike
+of 10% will cause the price to increase by 2.5%.
+
+So, the tariff hike $\Delta \tau$ is set to change the import volume by
+$\Delta m$ < 0.
