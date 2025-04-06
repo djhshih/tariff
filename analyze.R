@@ -110,6 +110,9 @@ world.gdp.2025.adjusted / world.gdp.2025 - 1
 us.gdp.2024 <- 27.72e12 * 1.029;
 us.gdp.2025 <- us.gdp.2024 * 1.029;
 
+# US goods export as a fraction of GDP
+sum(us.trades[, 2]) * 1e6 / us.gdp.2025
+
 
 # ---
 
@@ -239,6 +242,7 @@ world.export.change / sum(X0)
 # ---
 
 # Scenario: each country implement reciprical tariff against US
+#           US implements correct tariff rate with a min of 10%
 
 X <- init_trades(us.trades);
 X0 <- X;
@@ -254,7 +258,7 @@ for (r in 1:3) {
 	balances <- X[j, ] - X[, j];
 
 	tariff.changes <- get_tariff(balances, X[, j],
-		elasticity=elasticity, passthrough=passthrough, base=0);
+		elasticity=elasticity, passthrough=passthrough, base=0.1);
 
 	import.changes <- get_import_change(tariff.changes, X[, j],
 		elasticity=elasticity, passthrough=passthrough);
@@ -286,9 +290,6 @@ us.import.change / sum(X0[, 1])
 us.export.change <- sum(X[1, ]) - sum(X0[1, ]);
 us.export.change / sum(X0[1, ])
 
-# US goods export as a fraction of GDP
-sum(X0[1, ]) * 1e6 / us.gdp.2025
-
 us.gdp.2025.adjusted2 <- us.gdp.2025 + us.export.change * 1e6;
 us.gdp.2025.adjusted2 / us.gdp.2025 - 1
 
@@ -298,7 +299,7 @@ world.export.change / sum(X0)
 
 # ---
 
-# Scenario: US implement tariff and other countries do nothing
+# Scenario: US implement tariff (min 10%) and other countries do nothing
 
 X <- init_trades(us.trades);
 X0 <- X;
@@ -313,7 +314,7 @@ j <- 1;
 balances <- X[j, ] - X[, j];
 
 tariff.changes <- get_tariff(balances, X[, j],
-	elasticity=elasticity, passthrough=passthrough, base=0);
+	elasticity=elasticity, passthrough=passthrough, base=0.1);
 
 import.changes <- get_import_change(tariff.changes, X[, j],
 	elasticity=elasticity, passthrough=passthrough);
@@ -336,9 +337,6 @@ us.import.change / sum(X0[, 1])
 us.export.change <- sum(X[1, ]) - sum(X0[1, ]);
 us.export.change / sum(X0[1, ])
 
-# US goods export as a fraction of GDP
-sum(X0[1, ]) * 1e6 / us.gdp.2025
-
 us.gdp.2025.adjusted2 <- us.gdp.2025 + us.export.change * 1e6;
 us.gdp.2025.adjusted2 / us.gdp.2025 - 1
 
@@ -346,5 +344,4 @@ us.gdp.2025.adjusted2 / us.gdp.2025 - 1
 world.export.change <- sum(X - X0);
 world.export.change / sum(X0)
 
-# ---
 
